@@ -15,7 +15,6 @@ mkdir -p env/jdk && mkdir -p env/maven
 
 # INSTALL JAVA
 JAVA_URL=$(build_java_url $JAVA_VERSION $OS $ARCH)
-
 download_and_unpack $JAVA_URL "jdk" 
 
 # INSTALL MAVEN

@@ -16,7 +16,7 @@ function get_arch {
 
     case $ARCH in 
         "x86_64" | "amd64")
-            if [[ $JAVA_VERSION -ge 17 ]]; then
+            if [[ $JAVA_VERSION -ge 17 && $JAVA_VERSION -ne 19 ]]; then
                 ARCH="x64"
             else
                 ARCH="amd64"
@@ -37,7 +37,7 @@ function get_os {
         "linux")
         OS="linux";;
         "darwin")
-        if [[ $JAVA_VERSION -ge 17 ]]; then
+        if [[ $JAVA_VERSION -ge 17 && $JAVA_VERSION -ne 19 ]]; then
             OS="macos"
         else
             OS="darwin"
@@ -54,13 +54,16 @@ function build_java_url {
 
    case $JAVA_VERSION in
         "21")
-        JAVA_URL="https://github.com/graalvm/graalvm-ce-builds/releases/download/jdk-${JAVA_VERSION}/graalvm-community-jdk-${JAVA_VERSION}.0.0_${OS}-${ARCH}_bin.tar.gz";;
+        JAVA_VERSION="${JAVA_VERSION}.0.0"
+        JAVA_URL="https://github.com/graalvm/graalvm-ce-builds/releases/download/jdk-${JAVA_VERSION}/graalvm-community-jdk-${JAVA_VERSION}_${OS}-${ARCH}_bin.tar.gz";;
         "20")
-        JAVA_URL="https://github.com/graalvm/graalvm-ce-builds/releases/download/jdk-${JAVA_VERSION}/graalvm-community-jdk-${JAVA_VERSION}.0.2_${OS}-${ARCH}_bin.tar.gz";;
+        JAVA_VERSION="${JAVA_VERSION}.0.2"
+        JAVA_URL="https://github.com/graalvm/graalvm-ce-builds/releases/download/jdk-${JAVA_VERSION}/graalvm-community-jdk-${JAVA_VERSION}_${OS}-${ARCH}_bin.tar.gz";;
         "19")
         JAVA_URL="https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-22.3.0/graalvm-ce-java19-${OS}-${ARCH}-22.3.0.tar.gz";;
         "17")
-        JAVA_URL="https://github.com/graalvm/graalvm-ce-builds/releases/download/jdk-${JAVA_VERSION}/graalvm-community-jdk-${JAVA_VERSION}.0.8_${OS}-${ARCH}_bin.tar.gz";;
+        JAVA_VERSION="${JAVA_VERSION}.0.8"
+        JAVA_URL="https://github.com/graalvm/graalvm-ce-builds/releases/download/jdk-${JAVA_VERSION}/graalvm-community-jdk-${JAVA_VERSION}_${OS}-${ARCH}_bin.tar.gz";;
         "11")
         JAVA_URL="https://github.com/graalvm/graalvm-ce-builds/releases/download/vm-22.3.1/graalvm-ce-java11-${OS}-${ARCH}-22.3.1.tar.gz";;
         "8")

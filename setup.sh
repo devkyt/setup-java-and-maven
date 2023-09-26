@@ -20,10 +20,7 @@ MAVEN_URL=$(build_maven_url $MAVEN_FULL_VERSION $MAVEN_MAJOR_VERSION)
 download_and_unpack $MAVEN_URL "maven"
 
 
-curl -L \
-  -H "Accept: application/vnd.github+json" \
-  -H "X-GitHub-Api-Version: 2022-11-28" \
-  https://api.github.com/repos/graalvm/graalvm-ce-builds/releases
+
 
 
 

@@ -1,4 +1,4 @@
-name: "Setup Scala"
+name: "Setup Java & Maven"
 inputs:
   JAVA_VERSION:
     required: true

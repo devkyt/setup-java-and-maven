@@ -28,11 +28,11 @@ function get_os {
 }
 
 function build_java_url {
-   local JAVA_FULL_VERSION=$1
+   local JDK_FULL_VERSION=$1
    local OS=$2
    local ARCH=$3
 
-   echo "https://github.com/graalvm/graalvm-ce-builds/releases/download/jdk-${JAVA_FULL_VERSION}/graalvm-community-jdk-${JAVA_FULL_VERSION}_${OS}-${ARCH}_bin.tar.gz"
+   echo "https://github.com/graalvm/graalvm-ce-builds/releases/download/jdk-${JDK_FULL_VERSION}/graalvm-community-jdk-${JDK_FULL_VERSION}_${OS}-${ARCH}_bin.tar.gz"
 
 }
 
@@ -51,4 +51,8 @@ function download_and_unpack {
 
     curl -L $URL > $ARCHIVE
     tar -xf $ARCHIVE -C $WHERE_TO_UNPACK --strip-components=1
+}
+
+function clean_it_up {
+    rm ./env/*.gz
 }

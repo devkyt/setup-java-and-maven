@@ -1,8 +1,8 @@
 name: "Setup Java & Maven"
 inputs:
-  JDK_VERSION:
+  JAVA_VERSION:
     required: true
-    default: "21.0.0"
+    default: "21"
   MAVEN_VERSION:
     required: true
     default: "3.9.4"

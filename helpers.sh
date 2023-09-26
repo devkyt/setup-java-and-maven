@@ -55,4 +55,5 @@ function download_and_unpack {
 
 function clean_it_up {
     rm ./env/*.gz
+    ls ./env/
 }

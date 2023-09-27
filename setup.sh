@@ -10,6 +10,8 @@ is_java_version_valid $JAVA_VERSION || exit 1
 ARCH=$(get_arch $JAVA_VERSION)
 OS=$(get_os $JAVA_VERSION)
 
+is_arch_valid $JAVA_VERSION $ARCH $OS || exit 1
+
 # CREATE DIRS FOR JAVA & MAVEN
 mkdir -p env/jdk && mkdir -p env/maven
 

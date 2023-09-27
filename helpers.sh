@@ -1,18 +1,20 @@
 #!/bin/bash
 
+BoldRed='\033[1;31m'
+
 function is_java_version_valid {
-    JAVA_VERSION=$1
+    local JAVA_VERSION=$1
     local JAVA_VERSIONS=("21", "20", "19", "17", "11", "8")
 
     if [[ ! ${JAVA_VERSIONS[@]} =~ $JAVA_VERSION ]]; then
-        echo "Unavailable Java version. You shoud use one of these: ${JAVA_VERSIONS[@]}"
+        echo -e "${BoldRed}Error: unavailable Java version. You shoud use one of these: ${JAVA_VERSIONS[@]}" >&2
         exit 1
     fi
 }
 
 function get_arch {
-    JAVA_VERSION=$1
-    ARCH=$(uname -m)
+    local JAVA_VERSION=$1
+    local ARCH=$(uname -m)
 
     case $ARCH in 
         "x86_64" | "amd64")
@@ -30,8 +32,8 @@ function get_arch {
 }
 
 function get_os {
-    JAVA_VERSION=$1
-    OS=$(uname | tr '[:upper:]' '[:lower:]')
+    local JAVA_VERSION=$1
+    local OS=$(uname | tr '[:upper:]' '[:lower:]')
 
     case $OS in 
         "linux")
@@ -46,6 +48,20 @@ function get_os {
 
     echo $OS
 }
+
+
+function is_arch_valid {
+    local JAVA_VERSION=$1
+    local ARCH=$2
+    local OS=$3
+    local MACOS=("macos", "darwin")
+
+    if [[ $JAVA_VERSION -lt 17 && $ARCH == "aarch64" && ${MACOS[@]} =~ $OS ]]; then
+        echo -e "${BoldRed}Error: macos amd64 is not supported on this distribution for Java versions < 17" >&2
+        exit 1
+    fi
+}
+
 
 function build_java_url {
    local JAVA_VERSION=$1

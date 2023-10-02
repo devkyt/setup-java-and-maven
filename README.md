@@ -8,7 +8,7 @@ Straightforward action to setup Java and Maven on linux or macos. It uses [Graal
 
 Here we go:
 
-```
+```yaml
 steps:
 - name: Install Java and Maven
   uses: s8ckerpunch/setup-java-and-maven@beta

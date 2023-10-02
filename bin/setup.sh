@@ -1,5 +1,5 @@
 #!/bin/bash
-source "./helpers.sh"
+source "./bin/helpers.sh"
 
 JAVA_VERSION=$1
 MAVEN_FULL_VERSION=$2

@@ -1,6 +1,6 @@
 # Setup Java and Maven
 
-Straightforward action to setup Java and Maven on linux or macos. It uses [GraalVM](https://github.com/graalvm) as a JDK distibution.<br>
+Straightforward action to setup Java and Maven on Linux or MacOS. It uses [GraalVM](https://github.com/graalvm) as a JDK distibution.<br>
 
 **Note**: "straightforward" means that this action isn't damn complex or flexible. But still, it's good enough to prepare env for some projects. The decent workhorse.
 

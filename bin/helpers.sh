@@ -1,17 +1,5 @@
 #!/bin/bash
 
-BoldRed='\033[1;31m'
-
-function is_java_version_valid {
-    local JAVA_VERSION=$1
-    local JAVA_VERSIONS=("21", "20", "19", "17", "11", "8")
-
-    if [[ ! ${JAVA_VERSIONS[@]} =~ $JAVA_VERSION ]]; then
-        echo -e "${BoldRed}Error: unavailable Java version. You shoud use one of these: ${JAVA_VERSIONS[@]}" >&2
-        exit 1
-    fi
-}
-
 function get_arch {
     local JAVA_VERSION=$1
     local ARCH=$(uname -m)
@@ -49,24 +37,11 @@ function get_os {
     echo $OS
 }
 
-
-function is_arch_valid {
-    local JAVA_VERSION=$1
-    local ARCH=$2
-    local OS=$3
-    local MACOS=("macos", "darwin")
-
-    if [[ $JAVA_VERSION -lt 17 && $ARCH == "aarch64" && ${MACOS[@]} =~ $OS ]]; then
-        echo -e "${BoldRed}Error: macos amd64 is not supported on this distribution for Java versions < 17" >&2
-        exit 1
-    fi
-}
-
-
 function build_java_url {
    local JAVA_VERSION=$1
    local OS=$2
    local ARCH=$3
+   local JAVA_URL=""
 
    case $JAVA_VERSION in
         "21")
@@ -102,6 +77,7 @@ function download_and_unpack {
     local ARCHIVE="./env/${2}.tar.gz"
     local WHERE_TO_UNPACK="./env/${2}"
 
+    mkdir -p $WHERE_TO_UNPACK
     curl -L $URL > $ARCHIVE
     tar -xf $ARCHIVE -C $WHERE_TO_UNPACK --strip-components=1
 }

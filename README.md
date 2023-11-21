@@ -11,7 +11,7 @@ Here we go:
 ```yaml
 steps:
   - name: Install Java and Maven
-    uses: s8ckerpunch/setup-java-and-maven@v0.1
+    uses: devkyt/setup-java-and-maven@v0.1
     with:
       JAVA_VERSION: "11"
       MAVEN_VERSION: "3.5.4"
